@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import si.flexdetect.userservice.security.JwtUtil;
 
-import java.util.Optional;
 
 @Service //poslovna logika
 public class UserService {
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -21,18 +23,21 @@ public class UserService {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-    public User registerUser(String email, String rawPassword) throws IllegalArgumentException {
-        if(userRepository.findByEmail(email) != null) {
-            throw new IllegalArgumentException("Email already registered");
+    public String registerUser(String email, String password) {
+        if (userRepository.findByEmail(email).isPresent()) {
+            throw new IllegalArgumentException("Email already exists");
         }
+
         User user = new User();
         user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(rawPassword));
-        return userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+
+        // generate token
+        return jwtUtil.generateToken(user.getEmail());
     }
 
-    @Autowired
-    private JwtUtil jwtUtil;
+
 
     public String login(String email, String password) {
         User user = userRepository.findByEmail(email)

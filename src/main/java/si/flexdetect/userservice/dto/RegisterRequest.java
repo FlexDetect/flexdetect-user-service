@@ -1,0 +1,26 @@
+package si.flexdetect.userservice.dto;
+
+public class RegisterRequest {
+    private String email;
+    private String password;
+
+    public RegisterRequest() {
+        // potreben prazen konstruktor za Jackson
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
