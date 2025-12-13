@@ -37,8 +37,6 @@ public class UserService {
         return jwtUtil.generateToken(user.getEmail());
     }
 
-
-
     public String login(String email, String password) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
