@@ -1,6 +1,11 @@
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/UserServiceApplication.java
-/home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/config/SecurityConfig.java
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/controller/UserController.java
+/home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/dto/LoginRequest.java
+/home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/dto/RegisterRequest.java
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/model/User.java
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/repository/UserRepository.java
+/home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/security/CustomUserDetailsService.java
+/home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/security/JwtFilter.java
+/home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/security/JwtUtil.java
+/home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/security/SecurityConfig.java
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/service/UserService.java
