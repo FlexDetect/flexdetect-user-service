@@ -9,7 +9,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
-    private Long idUser;
+    private Integer idUser;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -19,11 +19,11 @@ public class User {
 
     public User() {}
 
-    public Long getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 

@@ -37,11 +37,23 @@ public class JwtUtil {
     }
     //razcleni token in pridobi email iz polja subject
     public String extractEmail(String token) {
-        return Jwts.parserBuilder().setSigningKey(key).build()
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
     }
+
+    public Integer extractUserId(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("userId", Integer.class);
+    }
+
     //preverba JWT
     public boolean isTokenValid(String token) {
         try {
@@ -51,4 +63,6 @@ public class JwtUtil {
             return false;
         }
     }
+
+
 }
