@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
-
 /*
 To je filter, ki se zažene pri vsakem HTTP requestu.
 
@@ -27,6 +26,7 @@ Preveri, če je token veljaven (jwtUtil.isTokenValid(token)).
 Če je, razbere e-pošto in preko UserDetailsService naloži podatke uporabnika.
 Nato v Spring Security context vstavi informacijo, da je ta uporabnik prijavljen:
  */
+
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 

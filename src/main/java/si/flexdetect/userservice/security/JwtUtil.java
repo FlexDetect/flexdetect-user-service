@@ -11,21 +11,15 @@ import java.security.Key;
 @Component
 public class JwtUtil {
 
-
-    private static String SECRET_KEY;
-
     private Key key;
 
     private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 ura
 
     @Autowired
-    public JwtUtil(@Value("${jwt.secret}") String secretKey) {
-        JwtUtil.SECRET_KEY = secretKey;
+    public JwtUtil(@Value("${jwt.secret}")  String secretKey) {
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes());
     }
-
-
-    //generiramo JWT token
+    // generiramo JWT token
     public String generateToken(Integer userId, String email) {
         return Jwts.builder()
                 .setSubject(email)
@@ -35,7 +29,7 @@ public class JwtUtil {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
-    //razcleni token in pridobi email iz polja subject
+    // razcleni token in pridobi email iz polja subject
     public String extractEmail(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
@@ -53,8 +47,7 @@ public class JwtUtil {
                 .getBody()
                 .get("userId", Integer.class);
     }
-
-    //preverba JWT
+    // preverba JWT
     public boolean isTokenValid(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
@@ -63,6 +56,4 @@ public class JwtUtil {
             return false;
         }
     }
-
-
 }
