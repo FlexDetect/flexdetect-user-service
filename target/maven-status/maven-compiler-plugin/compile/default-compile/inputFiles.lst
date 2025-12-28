@@ -8,4 +8,5 @@
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/security/JwtFilter.java
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/security/JwtUtil.java
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/security/SecurityConfig.java
+/home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/security/SecurityUtils.java
 /home/aljaz/Desktop/flexdetect-backend/user-service/src/main/java/si/flexdetect/userservice/service/UserService.java
