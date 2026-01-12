@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
-
 /*
 To je filter, ki se zažene pri vsakem HTTP requestu.
 
@@ -27,6 +26,7 @@ Preveri, če je token veljaven (jwtUtil.isTokenValid(token)).
 Če je, razbere e-pošto in preko UserDetailsService naloži podatke uporabnika.
 Nato v Spring Security context vstavi informacijo, da je ta uporabnik prijavljen:
  */
+
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -37,17 +37,33 @@ public class JwtFilter extends OncePerRequestFilter {
     private UserDetailsService userDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain
+    ) throws ServletException, IOException {
 
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
+
             if (jwtUtil.isTokenValid(token)) {
                 String email = jwtUtil.extractEmail(token);
+                Integer userId = jwtUtil.extractUserId(token);
+
                 var userDetails = userDetailsService.loadUserByUsername(email);
-                var authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+                var authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                userDetails,
+                                null,
+                                userDetails.getAuthorities()
+                        );
+
+                // store userId safely
+                authentication.setDetails(userId);
+
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
@@ -55,3 +71,4 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
+

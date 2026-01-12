@@ -1,6 +1,12 @@
+si/flexdetect/userservice/security/CustomUserDetailsService.class
+si/flexdetect/userservice/dto/RegisterRequest.class
 si/flexdetect/userservice/service/UserService.class
-si/flexdetect/userservice/controller/UserController.class
-si/flexdetect/userservice/config/SecurityConfig.class
+si/flexdetect/userservice/dto/LoginRequest.class
 si/flexdetect/userservice/repository/UserRepository.class
 si/flexdetect/userservice/UserServiceApplication.class
 si/flexdetect/userservice/model/User.class
+si/flexdetect/userservice/security/SecurityUtils.class
+si/flexdetect/userservice/security/JwtUtil.class
+si/flexdetect/userservice/controller/UserController.class
+si/flexdetect/userservice/security/JwtFilter.class
+si/flexdetect/userservice/security/SecurityConfig.class

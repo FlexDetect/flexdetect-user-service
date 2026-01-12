@@ -34,7 +34,7 @@ public class UserService {
         userRepository.save(user);
 
         // generate token
-        return jwtUtil.generateToken(user.getEmail());
+        return jwtUtil.generateToken(user.getIdUser(), user.getEmail());
     }
 
     public String login(String email, String password) {
@@ -42,7 +42,7 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         if (passwordEncoder.matches(password, user.getPassword())) {
-            return jwtUtil.generateToken(email);
+            return jwtUtil.generateToken(user.getIdUser(), email);
         } else {
             throw new IllegalArgumentException("Invalid credentials");
         }
